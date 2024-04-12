@@ -106,7 +106,7 @@ class Game2048 {
 
 	void generateRandomCell() {
 		int count = 0;
-		int[][] empty = new int[16][2];
+		int[][] empty = new int[BOARD_SIZE * BOARD_SIZE][2];
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			for (int j = 0; j < BOARD_SIZE; j++) {
 				if (cells[i][j].value == 0) {
