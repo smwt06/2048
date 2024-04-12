@@ -188,7 +188,7 @@ class Game2048 {
 				continue;
 			}
 
-			char userMove = userInput.charAt(0);
+			char userMove = Character.toUpperCase(userInput.charAt(0));
 
 			if (userMove == 'Q') {
 				System.exit(0);
