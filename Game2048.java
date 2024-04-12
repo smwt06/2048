@@ -21,7 +21,7 @@ class Game2048 {
 
 	/*
  	parameters to ensure correct board traversal.
-	starts traversing one cell away from the side corresponding to the direction of the user's move
+	traversal starts one cell away from the side corresponding to the direction of the user's move
  	and steps towards the other side.
   	nextRow and nextColumn are added to current indices to get the indices of the cell
    	that the current cell must be compared to for moving or merging.
