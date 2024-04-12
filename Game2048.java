@@ -1,15 +1,10 @@
 import java.util.Scanner;
 
-class Cell {
-	int value = 0;
-	boolean hasMerged = false;
-}
-
-class Game {	
+class Game2048 {	
 	final int BOARD_SIZE = 4;
 	Cell[][] cells;
-
-	void create() {
+	
+	Game2048() {
 		cells = new Cell[BOARD_SIZE][BOARD_SIZE];
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			for (int j = 0; j < BOARD_SIZE; j++) {
@@ -17,6 +12,11 @@ class Game {
 				cells[i][j].value = 0;
 			}
 		}
+	}
+	
+	class Cell {
+		int value = 0;
+		boolean hasMerged = false;
 	}
 
 	int rowStart = 0;
@@ -160,15 +160,11 @@ class Game {
 		}
 		System.out.println("");
 	}
-
-}
-
-class Game2048 {
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		Game game = new Game();
+		Game2048 game = new Game2048();
 		
-		game.create();
 		game.generateRandomCell();
 
 		System.out.print("\n\nHello!\nEnter W, A, S, D to move, and Q to quit.\n\n");
