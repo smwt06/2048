@@ -19,6 +19,13 @@ class Game2048 {
 		boolean hasMerged = false;
 	}
 
+	/*
+ 	parameters to ensure correct board traversal.
+	starts traversing one cell away from the side corresponding to the direction of the user's move
+ 	and steps towards the other side.
+  	nextRow and nextColumn are added to current indices to get the indices of the cell
+   	that the current cell must be compared to for moving or merging.
+	*/
 	int rowStart = 0;
 	int columnStart = 0;
 	int rowStep = 0;
@@ -26,8 +33,8 @@ class Game2048 {
 	int nextRow = 0;
 	int nextColumn = 0;
 	
-	//to be used for move() and isLegal()
-	void setDirection (char direction) {
+	//to be used in move() and isLegal()
+	void setDirection(char direction) {
 		switch (direction) {
 			case 'W': 
 				rowStart = 1;
@@ -64,7 +71,8 @@ class Game2048 {
 		}
 	}
 
-	void move() {
+	void move(char direction) {
+		setDirection(direction);
 		boolean changed = true;
 		while (changed) {
 			changed = false;
@@ -118,7 +126,8 @@ class Game2048 {
 		}
 	}
 	
-	boolean isLegal() {
+	boolean isLegal(char direction) {
+		setDirection(direction);
 		for (int i = rowStart; i >= 0 && i < BOARD_SIZE; i += rowStep) {
 			for (int j = columnStart; j >= 0 && j < BOARD_SIZE; j += columnStep) {
 					if (cells[i][j].value != 0 && (cells[i + nextRow][j + nextColumn].value == 0 || cells[i][j].value == cells[i + nextRow][j + nextColumn].value)) {
@@ -131,9 +140,8 @@ class Game2048 {
 
 	boolean isOver() {
 		char[] directions = {'W', 'A', 'S', 'D'};
-		for (int i = 0; i < BOARD_SIZE; i++) {
-			setDirection(directions[i]);
-			if (isLegal()) {
+		for (int i = 0; i < directions.length; i++) {
+			if (isLegal(directions[i])) {
 				return false;
 			}
 		}
@@ -190,9 +198,8 @@ class Game2048 {
 				continue;
 			}
 
-			game.setDirection(userMove);
-			if (game.isLegal()) {
-				game.move();
+			if (game.isLegal(userMove)) {
+				game.move(userMove);
 				game.generateRandomCell();
 			}
 			else {
