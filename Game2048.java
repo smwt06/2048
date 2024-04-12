@@ -34,7 +34,7 @@ class Game2048 {
 	int nextColumn = 0;
 	
 	//to be used in move() and isLegal()
-	void setDirection(char direction) {
+	private void setDirection(char direction) {
 		switch (direction) {
 			case 'W': 
 				rowStart = 1;
